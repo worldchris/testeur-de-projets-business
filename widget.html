@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testeur de Projet - JeCréeMonActivité</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            color: #334155;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .widget-container {
+            background: #ffffff;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.2rem;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .btn {
+            background-color: #2563eb;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+        .btn-secondary {
+            background-color: #e2e8f0;
+            color: #334155;
+        }
+        .btn-secondary:hover {
+            background-color: #cbd5e1;
+        }
+        .step {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        .step.active {
+            display: block;
+        }
+        .branding {
+            margin-top: auto;
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="widget-container">
+    
+    <div id="step-1" class="step active">
+        <h2>Votre idée de business est-elle viable ?</h2>
+        <p>Faites le test en 3 questions rapides pour découvrir si votre projet peut être rentable cette année.</p>
+        <button class="btn" onclick="nextStep(2)">Démarrer le Test rapide</button>
+    </div>
+
+    <div id="step-2" class="step">
+        <h2>Question 1/3</h2>
+        <p>Votre produit ou service résout-il un problème douloureux et urgent pour votre cible ?</p>
+        <button class="btn btn-secondary" onclick="nextStep(3)">Oui, absolument</button>
+        <button class="btn btn-secondary" onclick="nextStep(3)">Pas vraiment, c'est du confort</button>
+    </div>
+
+    <div id="step-3" class="step">
+        <h2>Question 2/3</h2>
+        <p>Avez-vous déjà un système pour capturer les emails de vos visiteurs ?</p>
+        <button class="btn btn-secondary" onclick="nextStep(4)">Oui, tout est en place</button>
+        <button class="btn btn-secondary" onclick="nextStep(4)">Non, je ne sais pas comment faire</button>
+    </div>
+
+    <div id="step-4" class="step">
+        <h2>Question 3/3</h2>
+        <p>Combien de temps êtes-vous prêt à investir chaque jour au début ?</p>
+        <button class="btn btn-secondary" onclick="showResults()">Moins d'une heure</button>
+        <button class="btn btn-secondary" onclick="showResults()">Le temps qu'il faudra</button>
+    </div>
+
+    <div id="step-result" class="step">
+        <h2>Diagnostic terminé !</h2>
+        <p><strong>Résultat :</strong> Votre idée a du potentiel. Pour réussir sans vous épuiser, installez une infrastructure technique prête à l'emploi.</p>
+        
+        <a id="affiliate-link-1" href="#" target="_blank" style="text-decoration: none;">
+            <button class="btn">Lancer mon système (Essai Gratuit)</button>
+        </a>
+        
+        <a id="affiliate-link-2" href="#" target="_blank" style="text-decoration: none;">
+            <button class="btn btn-secondary">🎁 Offert : Template Vidéos Guitare</button>
+        </a>
+    </div>
+
+    <div class="branding">Propulsé par JeCreeMonActivite.com</div>
+</div>
+
+<script>
+    // --- LA TAXE SUR LA FLEMME ---
+    const urlParams = new URLSearchParams(window.location.search);
+    let affiliateId = urlParams.get('sa');
+    
+    // Votre ID Systeme.io par défaut
+    const myDefaultAffiliateId = "sa16047325683a6745455482376be9c81d";
+    
+    // Vérification de sécurité
+    if (!affiliateId || affiliateId.trim() === "" || affiliateId === "VOTRE_ID_S_IO") {
+        affiliateId = myDefaultAffiliateId;
+    }
+    
+    // 1. Lien vers la page d'accueil Systeme.io
+    const systemeIoBaseUrl = "https://systeme.io/fr";
+    document.getElementById('affiliate-link-1').href = systemeIoBaseUrl + "?sa=" + affiliateId;
+
+    // 2. Lien vers votre Template partagé (Tutoriels guitare gratuits)
+    const urlTemplatePartage = "https://christophefc.systeme.io/0295ff8a"; 
+    document.getElementById('affiliate-link-2').href = urlTemplatePartage + "?sa=" + affiliateId;
+
+    // --- LOGIQUE DU QUIZ ---
+    function nextStep(stepNumber) {
+        document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+        document.getElementById('step-' + stepNumber).classList.add('active');
+    }
+
+    function showResults() {
+        document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+        document.getElementById('step-result').classList.add('active');
+    }
+</script>
+
+</body>
+</html>
