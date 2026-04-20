@@ -75,6 +75,10 @@
             font-size: 0.75rem;
             color: #94a3b8;
         }
+        .branding a {
+            color: #94a3b8;
+            text-decoration: underline;
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -125,7 +129,7 @@
         </a>
     </div>
 
-    <div class="branding">Propulsé par JeCreeMonActivite.com</div>
+    <div class="branding">Propulsé par <a href="https://www.jecreemonactivite.com/" target="_blank">JeCreeMonActivite.com</a></div>
 </div>
 
 <script>
@@ -145,7 +149,7 @@
     const systemeIoBaseUrl = "https://systeme.io/fr";
     document.getElementById('affiliate-link-1').href = systemeIoBaseUrl + "?sa=" + affiliateId;
 
-    // 2. Lien vers votre Template partagé (Tutoriels guitare gratuits)
+    // 2. Lien vers votre Template partagé
     const urlTemplatePartage = "https://christophefc.systeme.io/0295ff8a"; 
     document.getElementById('affiliate-link-2').href = urlTemplatePartage + "?sa=" + affiliateId;
 
